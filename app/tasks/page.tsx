@@ -1,11 +1,11 @@
-import Image from "next/image";
-import Navbar from "./components/Navbar";
-import Sidebar from "./components/Sidebar";
-import Link from "next/link";
-import TaskDetails from "./components/singleTask";
-import { Task } from "./models/task";
+// pages/tasks/[id].tsximport { useRouter } from 'next/router';
 
-export default async function Home() {{
+import Link from 'next/link';
+import { format } from 'date-fns';
+
+import { Task } from '../models/task';
+import TaskDetails from '../components/singleTask';
+export default async function Page() {
 
   const tasks = await fetch(`http://localhost:5000/api/tasks`)
   .then(response => response.json())
@@ -27,4 +27,3 @@ export default async function Home() {{
    )
     
   };
-}
