@@ -1,14 +1,18 @@
-import Link from 'next/link';
+'use client';
+import Link from "next/link";
+import { Task } from "../models/task";
 import { format } from 'date-fns';
+import ClickFunction from './clickFuntion';
 
-import { Task } from '../models/task';
 
 // Single component for task details
 interface TaskDetailsProps {
   task: Task;
 }
 
-export default function TaskDetails ({ task }: TaskDetailsProps) {
+export default function TaskDetails({
+  task
+}: TaskDetailsProps) {
   return (
     <li key={task.id} className="flex items-center justify-between bg-white rounded-lg shadow-md p-4">
       <Link href={`/tasks/${task.id}`}>
@@ -20,7 +24,9 @@ export default function TaskDetails ({ task }: TaskDetailsProps) {
         </div>
       </Link>
       <span className="text-gray-500">{format(task.dueDate, 'MMMM d, yyyy')}</span>
+      <div className="flex space-x-2"> {/* Container for buttons */}
+        <ClickFunction task={task} />
+      </div>
     </li>
   );
-};
-
+}
